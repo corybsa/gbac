@@ -1,0 +1,11 @@
+.navigation {
+  position: fixed;
+  height: 100%;
+  width: 150px;
+  box-shadow: -9px 0 15px;
+}
+
+.content {
+  margin-left: 150px;
+  padding: 10px;
+}

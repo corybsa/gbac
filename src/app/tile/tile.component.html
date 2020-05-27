@@ -1,0 +1,13 @@
+<div [ngStyle]="{ 'height.px': 8 * scale, 'width.px': 8 * scale }" style="display: inline-block;">
+    <div
+      *ngFor="let _ of 8 | times; let row = index"
+      [ngStyle]="{ 'height.px': scale, 'width.px': 8 * scale }"
+    >
+      <span
+        *ngFor="let x of 8 | times; let col = index"
+        [ngStyle]="{ 'height.px': scale, 'width.px': scale }"
+        class="gbac-color-{{pixels[row * col].color}}"
+        style="display: inline-block;"
+      ></span>
+    </div>
+</div>

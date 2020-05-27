@@ -1,0 +1,3 @@
+<div *ngFor="let _ of rows | times" style="line-height: 0;" [ngStyle]="{ 'margin-bottom.em': scale >= 4 ? 0.05 : 0.06 }">
+  <app-tile *ngFor="let __ of cols | times" [scale]="scale" style="margin-right: 0.06em;"></app-tile>
+</div>
