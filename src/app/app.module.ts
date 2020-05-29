@@ -10,7 +10,6 @@ import { AppRoutingModule } from './app-routing.module';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
 import { TileComponent } from './tile/tile.component';
-import { TileMapComponent } from './tile-map/tile-map.component';
 import { TimesPipe } from './pipes/times.pipe';
 import {MatInputModule} from '@angular/material/input';
 import { TileEditorComponent } from './tile-editor/tile-editor.component';
@@ -22,7 +21,6 @@ import {FormsModule} from '@angular/forms';
     AppComponent,
     TileMapEditorComponent,
     TileComponent,
-    TileMapComponent,
     TimesPipe,
     TileEditorComponent
   ],
