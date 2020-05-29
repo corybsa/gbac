@@ -1,0 +1,29 @@
+<h3>Tile map</h3>
+
+<mat-form-field>
+  <mat-label>Tile Scale</mat-label>
+  <mat-select [(value)]="scale" (selectionChange)="redraw()">
+    <mat-option [value]="1">1x</mat-option>
+    <mat-option [value]="2">2x</mat-option>
+    <mat-option [value]="4">4x</mat-option>
+    <mat-option [value]="6">6x</mat-option>
+    <mat-option [value]="8">8x</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Rows</mat-label>
+  <input matInput placeholder="rows" type="number" min="1" value="8" (change)="changeRows($event)">
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Columns</mat-label>
+  <input matInput placeholder="rows" type="number" min="1" value="16" (change)="changeCols($event)">
+</mat-form-field>
+<div style="display: inline;">
+<!--  <app-tile-map [scale]="scale" [rows]="rows" [cols]="cols" (selectTile)="selectedTile = $event"></app-tile-map>-->
+  <canvas #canvasTest width="250" height="250" style="display: block;" (click)="canvasClicked($event)"></canvas>
+</div>
+<div style="display: inline-block; width: 500px; height: 100%; position: absolute; top: 0; right: 0; box-shadow: 9px 0 15px;">
+  <app-tile-editor [tile]="selectedTile"></app-tile-editor>
+</div>

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {TileEditorComponent} from './tile-editor/tile-editor.component';
+import {TileMapEditorComponent} from './tile-map-editor/tile-map-editor.component';
 
 const routes: Routes = [
-  { path: 'tile-editor', component: TileEditorComponent }
+  { path: 'tile-map-editor', component: TileMapEditorComponent }
 ];
 
 @NgModule({

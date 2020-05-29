@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TileEditorComponent } from './tile-editor/tile-editor.component';
+import { TileMapEditorComponent } from './tile-map-editor/tile-map-editor.component';
 import { AppRoutingModule } from './app-routing.module';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
@@ -13,14 +13,18 @@ import { TileComponent } from './tile/tile.component';
 import { TileMapComponent } from './tile-map/tile-map.component';
 import { TimesPipe } from './pipes/times.pipe';
 import {MatInputModule} from '@angular/material/input';
+import { TileEditorComponent } from './tile-editor/tile-editor.component';
+import {MatSliderModule} from '@angular/material/slider';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TileEditorComponent,
+    TileMapEditorComponent,
     TileComponent,
     TileMapComponent,
-    TimesPipe
+    TimesPipe,
+    TileEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +33,9 @@ import {MatInputModule} from '@angular/material/input';
     AppRoutingModule,
     MatGridListModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatSliderModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
