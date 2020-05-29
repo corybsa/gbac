@@ -25,5 +25,5 @@
   <canvas #canvasTest width="250" height="250" style="display: block;" (click)="canvasClicked($event)"></canvas>
 </div>
 <div style="display: inline-block; width: 500px; height: 100%; position: absolute; top: 0; right: 0; box-shadow: 9px 0 15px;">
-  <app-tile-editor [tile]="selectedTile"></app-tile-editor>
+  <app-tile-editor [sourceTile]="selectedTile" (tileChanged)="updateTile($event)"></app-tile-editor>
 </div>

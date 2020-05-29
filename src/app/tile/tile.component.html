@@ -5,9 +5,9 @@
     >
       <span
         *ngFor="let __ of 8 | times; let col = index"
-        [ngStyle]="{ 'height.px': scale, 'width.px': scale, 'margin-right.px': editing ? 1 : 0 }"
-        class="gbac-color-{{pixels[(row * 8) + col]}}"
+        [ngStyle]="{ 'height.px': scale, 'width.px': scale, 'margin-right.px': editing ? 1 : 0, 'background': getColor(pixelData[(row * 8) + col])}"
         style="display: inline-block;"
+        (click)="modifyPixel(row * 8 + col)"
       ></span>
     </div>
 </div>

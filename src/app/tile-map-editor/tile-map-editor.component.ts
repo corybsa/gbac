@@ -1,23 +1,7 @@
-import {AfterContentInit, AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {TileComponent} from '../tile/tile.component';
-
-interface Tile {
-  pixels: number[];
-}
-
-enum PixelValue {
-  WHITE,
-  LIGHT_GRAY,
-  DARK_GRAY,
-  BLACK
-}
-
-enum PixelColor {
-  WHITE = '#FFFFFF',
-  LIGHT_GRAY = '#AAAAAA',
-  DARK_GRAY = '#555555',
-  BLACK = '#000000'
-}
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Tile} from '../datamodels/tile.model';
+import {PixelValue} from '../datamodels/pixel-value.model';
+import {PixelColor} from '../datamodels/pixel-color.model';
 
 @Component({
   selector: 'app-tile-map-editor',
@@ -28,7 +12,9 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
   scale: number;
   rows: number;
   cols: number;
-  selectedTile: TileComponent;
+  selectedTile: Tile;
+  selectedRow: number;
+  selectedCol: number;
 
   canvasContext: CanvasRenderingContext2D;
   tileMap: Tile[];
@@ -97,10 +83,14 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
     const y = $event.offsetY;
     const xOffset = Math.floor(x / (8 * this.scale));
     const yOffset = Math.floor(y / (8 * this.scale));
-    const row = Math.floor((y - yOffset) / 8 / this.scale);
-    const col = Math.floor((x - xOffset) / 8 / this.scale);
-    console.log($event, row, col);
-    console.log(this.tileMap[row * col]);
+    this.selectedRow = Math.floor((y - yOffset) / 8 / this.scale);
+    this.selectedCol = Math.floor((x - xOffset) / 8 / this.scale);
+    this.selectedTile = this.tileMap[(this.selectedRow * this.cols) + this.selectedCol];
+  }
+
+  updateTile(tile: Tile) {
+    this.tileMap[(this.selectedRow * this.cols) + this.selectedCol] = tile;
+    this.redraw();
   }
 
   changeRows($event) {
