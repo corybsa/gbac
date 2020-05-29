@@ -1,12 +1,12 @@
 <div [ngStyle]="{ 'height.px': 8 * scale, 'width.px': 8 * scale }" style="display: inline-block;">
     <div
       *ngFor="let _ of 8 | times; let row = index"
-      [ngStyle]="{ 'height.px': scale, 'width.px': 8 * scale }"
+      [ngStyle]="{ 'height.px': scale + (editing ? 1 : 0), 'width.px': 8 * scale + (editing ? 8 : 0), 'margin-top.px': editing ? 1 : 0 }"
     >
       <span
-        *ngFor="let x of 8 | times; let col = index"
-        [ngStyle]="{ 'height.px': scale, 'width.px': scale }"
-        class="gbac-color-{{pixels[row * col].color}}"
+        *ngFor="let __ of 8 | times; let col = index"
+        [ngStyle]="{ 'height.px': scale, 'width.px': scale, 'margin-right.px': editing ? 1 : 0 }"
+        class="gbac-color-{{pixels[(row * 8) + col]}}"
         style="display: inline-block;"
       ></span>
     </div>

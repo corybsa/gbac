@@ -7,6 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class TileComponent implements OnInit {
   @Input() scale: number;
+  @Input() editing = false;
 
   pixels = [];
 
@@ -15,8 +16,8 @@ export class TileComponent implements OnInit {
 
   ngOnInit(): void {
     for(let i = 0; i < 64; i++) {
-      // this.pixels.push({ color: Math.floor(Math.random() * 4) });
-      this.pixels.push({ color: 3 });
+      // this.pixels.push(Math.floor(Math.random() * 4));
+      this.pixels.push(3);
     }
   }
 }

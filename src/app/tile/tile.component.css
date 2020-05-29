@@ -13,3 +13,7 @@
 .gbac-color-3 {
   background: #000000;
 }
+
+.highlighted {
+  box-shadow: lightblue 0 0 15px;
+}
