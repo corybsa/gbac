@@ -63,7 +63,7 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
 
     for(let row = 0; row < height; row++) {
       for(let col = 0; col < width; col++) {
-        const tileNum = (Math.floor(row / 8) * 16) + Math.floor(col / 8);
+        const tileNum = (Math.floor(row / 8) * this.cols) + Math.floor(col / 8);
         const pixelRow = (Math.floor((col + (row * 128)) / 128)) % 8;
         const pixelIndex = (pixelRow * 8) + (Math.floor(col % 8));
         this.canvasContext.fillStyle = this.getColor(this.tileMap[tileNum].pixels[pixelIndex]);
@@ -104,7 +104,11 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
   }
 
   changeRows($event) {
-    const rows = +$event.target.value;
+    let rows = +$event.target.value;
+
+    if(rows < 0) {
+      rows = 1;
+    }
 
     if(rows > this.rows) {
       this.addRows((rows - this.rows) * this.cols);
@@ -117,7 +121,11 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
   }
 
   changeCols($event) {
-    const cols = +$event.target.value;
+    let cols = +$event.target.value;
+
+    if(cols < 0) {
+      cols = 1;
+    }
 
     if(cols > this.cols) {
       this.addColumns(cols - this.cols);
@@ -146,26 +154,23 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
    * @param n The amount of columns to add
    */
   addColumns(n: number) {
-    // TODO: test this
-    for(let i = this.tileMap.length; i > 0; i--) {
-      if(i % this.cols === 0) {
-        const tiles = [];
+    const len = this.tileMap.length;
 
-        for(let j = 0; j < n; j++) {
-          tiles.push({ pixels: Array(64).fill(Math.floor(Math.random() * 4)) });
-        }
+    for(let i = len; i > 0; i -= this.cols) {
+      const tiles = [];
 
-        this.tileMap.splice(i, 0, ...tiles);
+      for(let j = 0; j < n; j++) {
+        tiles.push({ pixels: Array(64).fill(3) });
       }
+
+      this.tileMap.splice(i, 0, ...tiles);
     }
   }
 
   deleteColumns(n: number) {
-    // TODO: fix this
     for(let i = this.tileMap.length; i > 0; i--) {
       if(i % this.cols === 0) {
-        this.tileMap.splice(i - 1 - n, n);
-        // this.tileMap[i - 1].pixels = Array(64).fill(3);
+        this.tileMap.splice(i - n, n);
       }
     }
   }
