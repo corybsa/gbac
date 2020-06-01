@@ -44,7 +44,8 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
     this.canvas.nativeElement.width = this.cols * 8 * this.scale + (this.showGridLines ? this.cols - 1 : 0);
     this.canvas.nativeElement.height = this.rows * 8 * this.scale + (this.showGridLines ? this.rows - 1 : 0);
     this.canvasContext.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
-    this.canvasContext.fillStyle = 'rgb(0, 0, 0)';
+    this.canvasContext.fillStyle = '#00000033';
+    this.canvasContext.fillRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
 
     const width = this.cols * 8;
     const height = this.rows * 8;
