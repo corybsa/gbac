@@ -15,6 +15,7 @@ import {MatInputModule} from '@angular/material/input';
 import { TileEditorComponent } from './tile-editor/tile-editor.component';
 import {MatSliderModule} from '@angular/material/slider';
 import {FormsModule} from '@angular/forms';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {FormsModule} from '@angular/forms';
     MatSelectModule,
     MatInputModule,
     MatSliderModule,
-    FormsModule
+    FormsModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

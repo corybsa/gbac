@@ -20,6 +20,9 @@
   <mat-label>Columns</mat-label>
   <input matInput placeholder="rows" type="number" min="1" value="{{cols}}" (change)="changeCols($event)">
 </mat-form-field>
+
+<mat-slide-toggle [(ngModel)]="showGridLines" (change)="redraw()">Show grid lines</mat-slide-toggle>
+
 <div style="display: inline;">
 <!--  <app-tile-map [scale]="scale" [rows]="rows" [cols]="cols" (selectTile)="selectedTile = $event"></app-tile-map>-->
   <canvas #canvasTest width="250" height="250" style="display: block;" (click)="canvasClicked($event)"></canvas>

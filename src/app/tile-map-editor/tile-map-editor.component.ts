@@ -12,6 +12,8 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
   scale: number;
   rows: number;
   cols: number;
+  showGridLines = true;
+
   selectedTile: Tile;
   selectedRow: number;
   selectedCol: number;
@@ -39,8 +41,8 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
   }
 
   drawTiles() {
-    this.canvas.nativeElement.width = this.cols * 8 * this.scale + this.cols - 1;
-    this.canvas.nativeElement.height = this.rows * 8 * this.scale + this.rows - 1;
+    this.canvas.nativeElement.width = this.cols * 8 * this.scale + (this.showGridLines ? this.cols - 1 : 0);
+    this.canvas.nativeElement.height = this.rows * 8 * this.scale + (this.showGridLines ? this.rows - 1 : 0);
     this.canvasContext.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
     this.canvasContext.fillStyle = 'rgb(0, 0, 0)';
 
@@ -52,10 +54,11 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
         const tileNum = (Math.floor(row / 8) * this.cols) + Math.floor(col / 8);
         const pixelRow = (Math.floor((col + (row * 128)) / 128)) % 8;
         const pixelIndex = (pixelRow * 8) + (Math.floor(col % 8));
+
         this.canvasContext.fillStyle = this.getColor(this.tileMap[tileNum].pixels[pixelIndex]);
         this.canvasContext.fillRect(
-          8 * this.scale * Math.floor(col / 8) + ((col % 8) * this.scale) + Math.floor(col / 8),
-          8 * this.scale * Math.floor(row / 8) + ((row % 8) * this.scale) + Math.floor(row / 8),
+          8 * this.scale * Math.floor(col / 8) + ((col % 8) * this.scale) + Math.floor((this.showGridLines ? col : 0) / 8),
+          8 * this.scale * Math.floor(row / 8) + ((row % 8) * this.scale) + Math.floor((this.showGridLines ? row : 0) / 8),
           this.scale,
           this.scale
         );
