@@ -21,7 +21,7 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
   canvasContext: CanvasRenderingContext2D;
   tileMap: Tile[];
 
-  @ViewChild('canvasTest') canvas: ElementRef<HTMLCanvasElement>;
+  @ViewChild('tileMapCanvas') tileMapCanvas: ElementRef<HTMLCanvasElement>;
 
   constructor() {
     this.scale = 4;
@@ -36,16 +36,16 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.canvasContext = this.canvas.nativeElement.getContext('2d');
+    this.canvasContext = this.tileMapCanvas.nativeElement.getContext('2d');
     this.drawTiles();
   }
 
   drawTiles() {
-    this.canvas.nativeElement.width = this.cols * 8 * this.scale + (this.showGridLines ? this.cols - 1 : 0);
-    this.canvas.nativeElement.height = this.rows * 8 * this.scale + (this.showGridLines ? this.rows - 1 : 0);
-    this.canvasContext.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
+    this.tileMapCanvas.nativeElement.width = this.cols * 8 * this.scale + (this.showGridLines ? this.cols - 1 : 0);
+    this.tileMapCanvas.nativeElement.height = this.rows * 8 * this.scale + (this.showGridLines ? this.rows - 1 : 0);
+    this.canvasContext.clearRect(0, 0, this.tileMapCanvas.nativeElement.width, this.tileMapCanvas.nativeElement.height);
     this.canvasContext.fillStyle = '#00000033';
-    this.canvasContext.fillRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
+    this.canvasContext.fillRect(0, 0, this.tileMapCanvas.nativeElement.width, this.tileMapCanvas.nativeElement.height);
 
     const width = this.cols * 8;
     const height = this.rows * 8;
