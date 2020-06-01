@@ -2,7 +2,7 @@
   <h3>Tile Editor</h3>
   <p *ngIf="!sourceTile">Click a tile on the tile map to edit!</p>
 
-  <canvas #tileCanvas width="250" height="250" style="display: block; margin: auto" (click)="canvasClicked($event)"></canvas>
+  <canvas #tileCanvas width="250" height="250" (click)="canvasClicked($event)"></canvas>
 
   <ng-container *ngIf="sourceTile">
     <mat-slider
@@ -13,7 +13,6 @@
       [displayWith]="formatLabel"
       [(ngModel)]="scale"
       (change)="drawPixels()"
-      style="display: inline-block; width: 50%;"
     ></mat-slider>
     <p>palette swatch should go here</p>
   </ng-container>

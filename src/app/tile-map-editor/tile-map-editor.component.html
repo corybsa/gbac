@@ -23,10 +23,10 @@
 
 <mat-slide-toggle [(ngModel)]="showGridLines" (change)="redraw()">Show grid lines</mat-slide-toggle>
 
-<div style="display: inline;">
-<!--  <app-tile-map [scale]="scale" [rows]="rows" [cols]="cols" (selectTile)="selectedTile = $event"></app-tile-map>-->
-  <canvas #tileMapCanvas width="250" height="250" style="display: block;" (click)="canvasClicked($event)"></canvas>
+<div id="tile-map">
+  <canvas #tileMapCanvas width="250" height="250" (click)="canvasClicked($event)"></canvas>
 </div>
-<div style="display: inline-block; width: 500px; height: 100%; position: absolute; top: 0; right: 0; box-shadow: 9px 0 15px;">
+
+<div id="tile-editor">
   <app-tile-editor [sourceTile]="selectedTile" (tileChanged)="updateTile($event)"></app-tile-editor>
 </div>
