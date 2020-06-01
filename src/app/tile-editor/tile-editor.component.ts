@@ -25,6 +25,10 @@ export class TileEditorComponent implements OnInit {
     return `${value}x`;
   }
 
+  /**
+   * Pixel value was changed.
+   * @param pixelData An updated array of pixel values for the tile
+   */
   changePixel(pixelData: PixelValue[]) {
     this.tileChanged.emit({ pixels: pixelData });
   }

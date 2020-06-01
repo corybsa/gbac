@@ -40,6 +40,9 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
     this.drawTiles();
   }
 
+  /**
+   * Draw tiles to the canvas.
+   */
   drawTiles() {
     this.tileMapCanvas.nativeElement.width = this.cols * 8 * this.scale + (this.showGridLines ? this.cols - 1 : 0);
     this.tileMapCanvas.nativeElement.height = this.rows * 8 * this.scale + (this.showGridLines ? this.rows - 1 : 0);
@@ -67,6 +70,10 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * Gets color from a number.
+   * @param n The value to translate to a number
+   */
   getColor(n: number) {
     switch(n) {
       case PixelValue.WHITE:
@@ -82,6 +89,10 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * Finds which tile was clicked in the tile map and opens the tile in the tile editor.
+   * @param $event The DOM event
+   */
   canvasClicked($event) {
     const x = $event.offsetX;
     const y = $event.offsetY;
@@ -92,11 +103,19 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
     this.selectedTile = this.tileMap[(this.selectedRow * this.cols) + this.selectedCol];
   }
 
+  /**
+   * Update tile data from the tile editor's change event.
+   * @param tile The modified tile's data
+   */
   updateTile(tile: Tile) {
     this.tileMap[(this.selectedRow * this.cols) + this.selectedCol] = tile;
     this.redraw();
   }
 
+  /**
+   * User changed the amount of rows to display.
+   * @param $event The DOM event
+   */
   changeRows($event) {
     let rows = +$event.target.value;
 
@@ -114,6 +133,10 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
     this.redraw();
   }
 
+  /**
+   * User changed the amount of columns to display.
+   * @param $event The DOM event
+   */
   changeCols($event) {
     let cols = +$event.target.value;
 
@@ -131,6 +154,10 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
     this.redraw();
   }
 
+  /**
+   * Add n number of rows. Rows will be added to the bottom of the tile map.
+   * @param n Number of rows to add
+   */
   addRows(n: number) {
     for(let i = 0; i < n; i++) {
       this.tileMap.push({
@@ -139,12 +166,16 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * Delete n number of rows. Rows will be deleted bottom-up.
+   * @param n Number of rows to delete
+   */
   deleteRows(n: number) {
     this.tileMap.splice(-n, n);
   }
 
   /**
-   * Add number of specified columns
+   * Add n number of columns. Columns will be added to the right of the tile map.
    * @param n The amount of columns to add
    */
   addColumns(n: number) {
@@ -161,6 +192,10 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * Delete n number of columns. Columns will be deleted right-to-left.
+   * @param n The amount of columns to delete
+   */
   deleteColumns(n: number) {
     for(let i = this.tileMap.length; i > 0; i--) {
       if(i % this.cols === 0) {
@@ -169,6 +204,9 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * Request animation frame from browser
+   */
   redraw() {
     window.requestAnimationFrame(this.drawTiles.bind(this));
   }

@@ -20,6 +20,10 @@ export class TileComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Gets color from a number.
+   * @param n The value to translate to a number
+   */
   getColor(n: PixelValue) {
     switch(n) {
       case PixelValue.WHITE:
@@ -35,6 +39,10 @@ export class TileComponent implements OnInit {
     }
   }
 
+  /**
+   * Pixel value was changed.
+   * @param index The index of the pixel, between 0 and 63.
+   */
   modifyPixel(index: number) {
     this.pixelData[index] = Math.floor(Math.random() * 4);
     this.pixelChanged.emit(this.pixelData);
