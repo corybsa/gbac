@@ -10,7 +10,6 @@ import {
   SimpleChanges,
   ViewChild
 } from '@angular/core';
-import {TileComponent} from '../tile/tile.component';
 import {Tile} from '../datamodels/tile.model';
 import {PixelValue} from '../datamodels/pixel-value.model';
 import {PixelColor} from '../datamodels/pixel-color.model';
@@ -24,7 +23,6 @@ export class TileEditorComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() sourceTile: Tile;
   @Output() tileChanged = new EventEmitter<Tile>();
 
-  @ViewChild(TileComponent) tileComponent: TileComponent;
   @ViewChild('tileCanvas') tileCanvas: ElementRef<HTMLCanvasElement>;
 
   canvas: HTMLCanvasElement;

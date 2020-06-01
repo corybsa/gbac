@@ -9,7 +9,6 @@ import { TileMapEditorComponent } from './tile-map-editor/tile-map-editor.compon
 import { AppRoutingModule } from './app-routing.module';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
-import { TileComponent } from './tile/tile.component';
 import { TimesPipe } from './pipes/times.pipe';
 import {MatInputModule} from '@angular/material/input';
 import { TileEditorComponent } from './tile-editor/tile-editor.component';
@@ -21,7 +20,6 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
   declarations: [
     AppComponent,
     TileMapEditorComponent,
-    TileComponent,
     TimesPipe,
     TileEditorComponent
   ],
