@@ -30,6 +30,8 @@ export class TileEditorComponent implements OnInit, AfterViewInit, OnChanges {
   pixels: PixelValue[];
   scale: number;
 
+  selectedColor: PixelValue;
+
   constructor() {
     this.scale = 40;
   }
@@ -83,7 +85,7 @@ export class TileEditorComponent implements OnInit, AfterViewInit, OnChanges {
    * Gets color from a number.
    * @param n The value to translate to a number
    */
-  getColor(n: number) {
+  getColor(n: PixelValue) {
     switch(n) {
       case PixelValue.WHITE:
         return PixelColor.WHITE;
@@ -99,7 +101,7 @@ export class TileEditorComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   /**
-   * Finds which tile was clicked in the tile map and opens the tile in the tile editor.
+   * Finds which pixel was clicked and changes the color of that pixel.
    * @param $event The DOM event
    */
   canvasClicked($event) {
@@ -109,7 +111,7 @@ export class TileEditorComponent implements OnInit, AfterViewInit, OnChanges {
     const yOffset = Math.floor(y / this.scale);
     const row = Math.floor((y - yOffset) / this.scale);
     const col = Math.floor((x - xOffset) / this.scale);
-    this.pixels[(row * 8) + col] = Math.floor(Math.random() * 4);
+    this.pixels[(row * 8) + col] = this.selectedColor;
     this.changePixel();
     this.drawPixels();
   }
@@ -119,6 +121,10 @@ export class TileEditorComponent implements OnInit, AfterViewInit, OnChanges {
    */
   changePixel() {
     this.tileChanged.emit({ pixels: this.pixels });
+  }
+
+  changeColor($event: PixelValue) {
+    this.selectedColor = $event;
   }
 
 }

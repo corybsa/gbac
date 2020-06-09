@@ -15,13 +15,15 @@ import { TileEditorComponent } from './tile-editor/tile-editor.component';
 import {MatSliderModule} from '@angular/material/slider';
 import {FormsModule} from '@angular/forms';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { PaletteSwatchComponent } from './palette-swatch/palette-swatch.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TileMapEditorComponent,
     TimesPipe,
-    TileEditorComponent
+    TileEditorComponent,
+    PaletteSwatchComponent
   ],
   imports: [
     BrowserModule,

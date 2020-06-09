@@ -14,6 +14,6 @@
       [(ngModel)]="scale"
       (change)="drawPixels()"
     ></mat-slider>
-    <p>palette swatch should go here</p>
+    <app-palette-swatch (colorSelected)="changeColor($event)"></app-palette-swatch>
   </ng-container>
 </div>

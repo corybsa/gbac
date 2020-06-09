@@ -74,7 +74,7 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
    * Gets color from a number.
    * @param n The value to translate to a number
    */
-  getColor(n: number) {
+  getColor(n: PixelValue) {
     switch(n) {
       case PixelValue.WHITE:
         return PixelColor.WHITE;
