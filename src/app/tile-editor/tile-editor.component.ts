@@ -123,6 +123,10 @@ export class TileEditorComponent implements OnInit, AfterViewInit, OnChanges {
     this.tileChanged.emit({ pixels: this.pixels });
   }
 
+  /**
+   * Changes the color of pixel that will be drawn.
+   * @param $event The {@link PixelValue} to change to.
+   */
   changeColor($event: PixelValue) {
     this.selectedColor = $event;
   }
