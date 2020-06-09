@@ -31,6 +31,12 @@ export class TileEditorComponent implements OnInit, AfterViewInit, OnChanges {
   scale: number;
 
   selectedColor: PixelValue;
+  isMouseDown = false;
+
+  mouseCoords: { row: number, col: number } = {
+    row: 0,
+    col: 0
+  };
 
   constructor() {
     this.scale = 40;
@@ -105,13 +111,8 @@ export class TileEditorComponent implements OnInit, AfterViewInit, OnChanges {
    * @param $event The DOM event
    */
   canvasClicked($event) {
-    const x = $event.offsetX;
-    const y = $event.offsetY;
-    const xOffset = Math.floor(x / this.scale);
-    const yOffset = Math.floor(y / this.scale);
-    const row = Math.floor((y - yOffset) / this.scale);
-    const col = Math.floor((x - xOffset) / this.scale);
-    this.pixels[(row * 8) + col] = this.selectedColor;
+    this.mouseCoords = this.getMousePixel($event);
+    this.pixels[(this.mouseCoords.row * 8) + this.mouseCoords.col] = this.selectedColor;
     this.changePixel();
     this.drawPixels();
   }
@@ -129,6 +130,34 @@ export class TileEditorComponent implements OnInit, AfterViewInit, OnChanges {
    */
   changeColor($event: PixelValue) {
     this.selectedColor = $event;
+  }
+
+  getMousePixel($event): { row: number, col: number } {
+    const x = $event.offsetX;
+    const y = $event.offsetY;
+    const xOffset = Math.floor(x / this.scale);
+    const yOffset = Math.floor(y / this.scale);
+    const row = Math.floor((y - yOffset) / this.scale);
+    const col = Math.floor((x - xOffset) / this.scale);
+    return { row, col };
+  }
+
+  mouseDown() {
+    this.isMouseDown = true;
+  }
+
+  mouseUp() {
+    this.isMouseDown = false;
+  }
+
+  mouseMove($event) {
+    const coords = this.getMousePixel($event);
+
+    // only update the pixel if the mouse button is being pressed and the mouse has moved to a different pixel
+    if(this.isMouseDown && (coords.row !== this.mouseCoords.row || coords.col !== this.mouseCoords.col)) {
+      this.canvasClicked($event);
+      console.log('mousemove', $event);
+    }
   }
 
 }

@@ -2,7 +2,7 @@
   <h3>Tile Editor</h3>
   <p *ngIf="!sourceTile">Click a tile on the tile map to edit!</p>
 
-  <canvas #tileCanvas width="250" height="250" (click)="canvasClicked($event)"></canvas>
+  <canvas #tileCanvas width="250" height="250" (click)="canvasClicked($event)" (mousedown)="mouseDown()" (mouseup)="mouseUp()" (mousemove)="mouseMove($event)"></canvas>
 
   <ng-container *ngIf="sourceTile">
     <mat-slider
