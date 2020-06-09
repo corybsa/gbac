@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {AfterContentInit, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {PixelValue} from '../datamodels/pixel-value.model';
 import {PixelColor} from '../datamodels/pixel-color.model';
 
@@ -18,7 +18,7 @@ interface ColorPalette {
   templateUrl: './palette-swatch.component.html',
   styleUrls: ['./palette-swatch.component.css']
 })
-export class PaletteSwatchComponent implements OnInit {
+export class PaletteSwatchComponent implements OnInit, AfterContentInit {
   monoPalette: MonochromePalette;
 
   @Output() colorSelected: EventEmitter<PixelValue>;
@@ -35,6 +35,10 @@ export class PaletteSwatchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngAfterContentInit() {
+    this.colorSelected.emit(this.monoPalette.color0);
   }
 
   /**
