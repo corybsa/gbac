@@ -20,6 +20,7 @@ interface ColorPalette {
 })
 export class PaletteSwatchComponent implements OnInit, AfterContentInit {
   monoPalette: MonochromePalette;
+  colorPalette: ColorPalette;
 
   @Output() colorSelected: EventEmitter<PixelValue>;
 
@@ -38,7 +39,7 @@ export class PaletteSwatchComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
-    this.colorSelected.emit(this.monoPalette.color0);
+    this.colorSelected.emit(this.monoPalette.color3);
   }
 
   /**
@@ -60,7 +61,7 @@ export class PaletteSwatchComponent implements OnInit, AfterContentInit {
     }
   }
 
-  selectColor(n: PixelValue, $event) {
+  selectColor(n: PixelValue, $event: any) {
     this.colorSelected.emit(n);
 
     for(const item of $event.path[1].children) {

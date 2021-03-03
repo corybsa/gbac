@@ -161,7 +161,7 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
   addRows(n: number) {
     for(let i = 0; i < n; i++) {
       this.tileMap.push({
-        pixels: Array(64).fill(Math.floor(Math.random() * 4))
+        pixels: Array(64).fill(0)
       });
     }
   }
@@ -185,7 +185,7 @@ export class TileMapEditorComponent implements OnInit, AfterViewInit {
       const tiles = [];
 
       for(let j = 0; j < n; j++) {
-        tiles.push({ pixels: Array(64).fill(3) });
+        tiles.push({ pixels: Array(64).fill(0) });
       }
 
       this.tileMap.splice(i, 0, ...tiles);

@@ -132,7 +132,7 @@ export class TileEditorComponent implements OnInit, AfterViewInit, OnChanges {
     this.selectedColor = $event;
   }
 
-  getMousePixel($event): { row: number, col: number } {
+  getMousePixel($event: any): { row: number, col: number } {
     const x = $event.offsetX;
     const y = $event.offsetY;
     const xOffset = Math.floor(x / this.scale);
@@ -150,13 +150,12 @@ export class TileEditorComponent implements OnInit, AfterViewInit, OnChanges {
     this.isMouseDown = false;
   }
 
-  mouseMove($event) {
+  mouseMove($event: any) {
     const coords = this.getMousePixel($event);
 
     // only update the pixel if the mouse button is being pressed and the mouse has moved to a different pixel
     if(this.isMouseDown && (coords.row !== this.mouseCoords.row || coords.col !== this.mouseCoords.col)) {
       this.canvasClicked($event);
-      console.log('mousemove', $event);
     }
   }
 
